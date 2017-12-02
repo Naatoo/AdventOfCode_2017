@@ -1,5 +1,6 @@
 file = open("data.txt")
 number = file.read().strip()
+file.close()
 
 sum_digits_1 = 0
 for n, digit in enumerate(number[:-1]):
