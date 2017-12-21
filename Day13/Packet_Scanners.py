@@ -40,4 +40,31 @@ for index in range(len(layers)):
 print("Part 1:", sum([number * layers[number][0] for number in caugth]))
 
 
+found = 0
+delay = 0
+while found != 1:
+    layers = layers2
+    print(delay)
+    for index in range(len(layers) + delay):
+        if index > delay:
+            try:
+                if layers[index - delay][2] == 0:
+                    delay += 1
+                    break
+            except TypeError:
+                pass
+        for v in layers.values():
+            if v is not None:
+                if v[1] == 0 and v[2] < v[0]:
+                    v[2] += 1
+                    if v[0] - 1 == v[2]:
+                        v[1] = 1
+                    continue
+                if v[1] == 1 and v[2] > 0:
+                    v[2] -= 1
+                    if v[2] == 0:
+                        v[1] = 0
+        if index == len(layers) + delay - 1:
+            found = 1
 
+print("Part 2:", delay)
